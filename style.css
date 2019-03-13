@@ -234,3 +234,7 @@ body{
 .inputMessageContainer i{
   font-size: 22px;
 }
+
+.hidden{
+  display: none;
+}
