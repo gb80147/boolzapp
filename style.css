@@ -129,10 +129,6 @@ body{
   padding-right: 10px;
 }
 
-.active{
-  background: #dddbdb;
-}
-
 .info{
   width: 100%;
   height: 100%;
@@ -162,17 +158,68 @@ body{
   padding: 0 15px;
 }
 
-.infoContactChat{
+.nameContactChat{
   display: flex;
   align-items: center;
 }
 
+.main{
+  width: 100%;
+  height: 100%;
+  background: #f7f9fa;
+}
+
+.mainContenitor{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.mainContenitor div{
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#image img{
+  max-width: 90%;
+  margin-bottom: 20px;
+  border-radius: 50%;
+}
+
+.mainContenitor *{
+  text-align: center;
+}
+
+.mainContenitor h2{
+  color: #4b5961;
+}
+
+.mainContenitor p{
+  font-size: 14px;
+  color: #acb6bc;
+  padding: 20px 0;
+}
+
+.mainContenitor p:first-of-type{
+  border-bottom: 1px solid #acb6bc;
+}
+
+.mainContenitor p span{
+  color: #1bc15a;
+}
+
 .chat{
   width: 100%;
-  height: calc( 100% - 120px );
+  height: calc( 100% - 60px - 60px);
   background-image: url(img/msg-background.jpg);
   padding: 15px;
   overflow-y: scroll;
+  display: none;
 }
 
 .row{
@@ -208,10 +255,6 @@ body{
   clear: both;
 }
 
-
-
-
-
 .inputMessageContainer{
   height: 60px;
   background: #eeeeee;
@@ -235,11 +278,19 @@ body{
   font-size: 22px;
 }
 
+.active{
+  background: #dddbdb;
+}
+
+.selected{
+  display: block;
+}
+
 .hidden{
   display: none;
 }
 
-@media screen and (max-width:880px){
+@media screen and (max-width:1200px){
 
   .container{
     height: 100vh;
