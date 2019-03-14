@@ -11,7 +11,7 @@ function addMessage() {
 var textMessage = $("#sendMessage");
 var textUser = textMessage.val();
 
-var chat = $(".chat")
+var chat = $(".chat.selected")
 
 var row = document.createElement("div");
 $(row).addClass("row clearfix")
@@ -35,7 +35,7 @@ chat.append(row);
 
 function receiveMessage() {
 
-var chat = $(".chat")
+var chat = $(".chat.selected  ")
 
 var row = document.createElement("div");
 var messageBox = document.createElement("div");
@@ -60,10 +60,9 @@ function transferToChat(e) {
 
     var textMessage = $("#sendMessage");
 
-    addMessage(textMessage);
+    addMessage();
     setTimeout(receiveMessage, 1000);
     textMessage.val("");
-
   }
 }
 
