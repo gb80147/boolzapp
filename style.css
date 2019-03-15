@@ -119,7 +119,8 @@ body{
   align-items: center;
 }
 
-.contact:hover{
+.contact:hover,
+.dropElementI:hover{
   background: #eeeeee;
 }
 
@@ -178,7 +179,7 @@ body{
 }
 
 .mainContenitor div{
-  width: 55%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,6 +232,19 @@ body{
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 7px;
+  position: relative;
+}
+
+.messageBox i{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  display: none;
+}
+
+.messageBox:hover .fa-angle-down{
+  display: block;
 }
 
 .received{
@@ -253,6 +267,27 @@ body{
   display: table;
   content: "";
   clear: both;
+}
+
+.dropMenuI{
+  position: absolute;
+  top: 30px;
+  right: 0;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 4px 0px, rgba(0, 0, 0, 0.08) 0px 8px 16px 0px;
+  border-radius: 8px;
+  display: none;
+  background: white;
+  z-index: 10;
+}
+
+.dropElementI{
+  padding: 10px 20px;
+  text-align: right;
+}
+
+.dropMenuI a{
+  text-decoration: none;
+  color: slategrey;
 }
 
 .inputMessageContainer{

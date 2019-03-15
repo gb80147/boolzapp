@@ -2,9 +2,20 @@ function addMessage() {
 
 /*
 <div class="row clearfix">
-  <div class="messageBox sent clearfix">
+  <div class="messageBox received clearfix">
     <p>ciao</p>
+    <i class="fas fa-angle-down"></i>
     <small>17.44</small>
+    <div class="dropMenuI">
+      <div class="">
+        <div class="dropElementI">
+          <a href="#">Info messaggio</a>
+        </div>
+        <div class="dropElementI deleteMsg">
+          <a href="#">Cancella messaggio</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 */
@@ -13,7 +24,7 @@ var textUser = textMessage.val();
 
 var chat = $(".chat.selected")
 
-var row = document.createElement("div");
+var row = document.createElement("div");                            // ↓↓partire dall'esterno verso l'interno
 $(row).addClass("row clearfix")
 
 var messageBox = document.createElement("div");
@@ -22,36 +33,93 @@ $(messageBox).addClass("messageBox sent clearfix")
 var messageContent = document.createElement("p");
 $(messageContent).text(textUser);
 
+var arrow = document.createElement("i");
+$(arrow).addClass("fas fa-angle-down")
+
 var messageDetail = document.createElement("small");
 $(messageDetail).text("12:31");
 
+var dropMenuI = document.createElement("div");
+$(dropMenuI).addClass("dropMenuI")
 
-messageBox.append(messageContent);
-messageBox.append(messageDetail);
+var containerDropMenu = document.createElement("div");
+$(containerDropMenu).addClass("containerDropMenu")
 
-row.append(messageBox);
+var dropElInfo = document.createElement("div");
+$(dropElInfo).addClass("dropElementI")
+
+var infoMsg = document.createElement("a");
+$(infoMsg).text("Info messaggio")
+
+var dropElDel = document.createElement("div");
+$(dropElDel).addClass("dropElementI deleteMsg")
+
+var deleteMsg = document.createElement("a");
+$(deleteMsg).text("Cancella messaggio")
+
+
 chat.append(row);
+row.append(messageBox);
+messageBox.append(messageContent);
+messageBox.append(arrow);
+messageBox.append(messageDetail);
+messageBox.append(dropMenuI)
+dropMenuI.append(containerDropMenu)
+containerDropMenu.append(dropElInfo)
+containerDropMenu.append(dropElDel)
+dropElInfo.append(infoMsg)
+dropElDel.append(deleteMsg)                                         // ↑↑partire dall'interno verso l'esterno
 }
 
 function receiveMessage() {
 
-var chat = $(".chat.selected  ")
+var chat = $(".chat.selected")
 
-var row = document.createElement("div");
+var row = document.createElement("div");                            // ↓↓partire dall'esterno verso l'interno
+$(row).addClass("row clearfix")
+
 var messageBox = document.createElement("div");
+$(messageBox).addClass("messageBox received clearfix")
+
 var messageContent = document.createElement("p");
 $(messageContent).text("ok");
+
+var arrow = document.createElement("i");
+$(arrow).addClass("fas fa-angle-down")
+
 var messageDetail = document.createElement("small");
 $(messageDetail).text("12:31");
 
-$(messageBox).addClass("messageBox received clearfix")
+var dropMenuI = document.createElement("div");
+$(dropMenuI).addClass("dropMenuI")
+
+var containerDropMenu = document.createElement("div");
+$(containerDropMenu).addClass("containerDropMenu")
+
+var dropElInfo = document.createElement("div");
+$(dropElInfo).addClass("dropElementI")
+
+var infoMsg = document.createElement("a");
+$(infoMsg).text("Info messaggio")
+
+var dropElDel = document.createElement("div");
+$(dropElDel).addClass("dropElementI deleteMsg")
+
+var deleteMsg = document.createElement("a");
+$(deleteMsg).text("Cancella messaggio")
 
 
-messageBox.append(messageContent);
-messageBox.append(messageDetail);
-
-row.append(messageBox);
 chat.append(row);
+row.append(messageBox);
+messageBox.append(messageContent);
+messageBox.append(arrow);
+messageBox.append(messageDetail);
+messageBox.append(dropMenuI)
+dropMenuI.append(containerDropMenu)
+containerDropMenu.append(dropElInfo)
+containerDropMenu.append(dropElDel)
+dropElInfo.append(infoMsg)
+dropElDel.append(deleteMsg)                                         // ↑↑partire dall'interno verso l'esterno
 }
 
 function transferToChat(e) {
@@ -115,19 +183,33 @@ function contactClick() {
   contact.removeClass("active")                                      //rimuovo a tutti i "contact" la classe "active"
 
   $(this).addClass("active");                                        //all'elemento cliccato viene aggiunta la classe "active"
+}
 
+function show() {
+
+  var menu = $(this).find(".dropMenuI");
+  menu.slideToggle();
+}
+
+function deleteMsg() {
+
+  var msg = $(this).closest(".row");
+  msg.remove();
 }
 
 function init(){
 
   var send = $("#sendMessage");
-  send.keyup(transferToChat);                                         //evento "keyup" che si verifica al rilascio di un tasto della tastiera
+  send.keyup(transferToChat);                         //evento "keyup" che si verifica al rilascio di un tasto della tastiera
 
   var nameSearch = $(".search input");
   nameSearch.keyup(searchContact);
 
   var contact = $(".contact");
   contact.click(contactClick);
+
+  $(document).on("click", ".messageBox", show);      //all'evento click viene caricato il documento e se c'è ".messageBox" parte la funzione "show"
+  $(document).on("click", ".deleteMsg", deleteMsg);  //all'evento click viene caricato il documento e se c'è ".deleteMsg" parte la funzione "deleteMsg"
 }
 
-$(document).ready(init);                                              //quando il documento è stato caricato parte la funzione init
+$(document).ready(init);                             //quando il documento è stato caricato parte la funzione init
