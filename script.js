@@ -1,3 +1,15 @@
+function transferToChat(e) {
+
+  if (e.which == 13) {
+
+    var textMessage = $("#sendMessage");
+
+    addMessage();
+    setTimeout(randomAnswer, 1000);
+    textMessage.val("");
+  }
+}
+
 function addMessage() {
 
 /*
@@ -71,7 +83,30 @@ dropElInfo.append(infoMsg)
 dropElDel.append(deleteMsg)                                         // ↑↑partire dall'interno verso l'esterno
 }
 
-function receiveMessage() {
+function randomAnswer() {
+
+  $.ajax({
+
+    url: "https://www.boolean.careers/api/random/sentence",
+    method: "GET",
+    success: function(data, state) {
+
+      if(data.success){
+
+        var val = data.response;
+        receiveMessage(val)
+        console.log(val);
+      }
+    },
+    error: function(request, state, error) {
+      console.log("request", request);
+      console.log("state", state);
+      console.log("error", error);
+    }
+  });
+}
+
+function receiveMessage(val) {
 
 var chat = $(".chat.selected")
 
@@ -82,7 +117,7 @@ var messageBox = document.createElement("div");
 $(messageBox).addClass("messageBox received clearfix")
 
 var messageContent = document.createElement("p");
-$(messageContent).text("ok");
+$(messageContent).text(val);
 
 var arrow = document.createElement("i");
 $(arrow).addClass("fas fa-angle-down")
@@ -120,18 +155,6 @@ containerDropMenu.append(dropElInfo)
 containerDropMenu.append(dropElDel)
 dropElInfo.append(infoMsg)
 dropElDel.append(deleteMsg)                                         // ↑↑partire dall'interno verso l'esterno
-}
-
-function transferToChat(e) {
-
-  if (e.which == 13) {
-
-    var textMessage = $("#sendMessage");
-
-    addMessage();
-    setTimeout(receiveMessage, 1000);
-    textMessage.val("");
-  }
 }
 
 function searchContact() {
